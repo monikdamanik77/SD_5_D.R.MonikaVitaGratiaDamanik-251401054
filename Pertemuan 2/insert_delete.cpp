@@ -32,7 +32,7 @@ void insertLast (int n) {
     newnode -> next = NULL;
 
     if (head == NULL) {
-        head == newnode;
+        head = newnode;
         tail = head;
     } else {
         tail -> next = newnode;
