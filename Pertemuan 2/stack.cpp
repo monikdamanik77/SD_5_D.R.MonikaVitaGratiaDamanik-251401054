@@ -3,7 +3,7 @@ using namespace std;
 
 struct node {
     int value;
-    node* next;
+    node *next;
 };
 
 node* head = NULL;
@@ -16,7 +16,7 @@ void insertLast (int n) {
     newnode -> next = NULL;
 
     if (head == NULL) {
-        head == newnode;
+        head = newnode;
         tail = head;
     } else {
         tail -> next = newnode;
@@ -24,17 +24,24 @@ void insertLast (int n) {
     }
 }
 
-// delete first
-void deleteFirst() {
+// delete last
+void deleteLast() {
     if(head==NULL) {
         cout << "List Kosong!" << endl;
         return;
     }
-
-    node *temp = head;
-    head = head -> next;
-    if (head == NULL) tail == NULL;
-    delete temp;
+    if (head == tail) {
+        delete head;
+        head = tail = NULL;
+        return;
+    }
+    node *p = head;
+    while (p -> next != tail) {
+        p = p -> next;
+    }
+    delete tail;
+    tail = p;
+    tail -> next = NULL;
 }
 
 void display() {
@@ -56,7 +63,12 @@ int main() {
     display();
     insertLast(5);
     display();
-    deleteFirst();
+    
+    deleteLast();
+    display();
+    deleteLast();
+    display();
+    deleteLast();
     display();
 
     return 0;
